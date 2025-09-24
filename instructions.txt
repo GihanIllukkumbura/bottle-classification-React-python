@@ -1,0 +1,227 @@
+# EcoReward Bottle Detection System - Setup Instructions
+
+## 📋 Prerequisites
+- Python 3.8 or higher
+- Node.js 18.0 or higher
+- npm or yarn package manager
+- Git (for cloning the repository)
+- Webcam/Camera for bottle detection
+
+## 🚀 Project Setup Guide
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/GihanIllukkumbura/bottle-classification-React-python.git
+cd bottle-classification-React-python
+```
+
+## 🐍 Backend Setup (Python Flask API)
+
+### 2. Navigate to Backend Directory
+```bash
+cd backend
+```
+
+### 3. Create Virtual Environment
+```bash
+# On Windows
+python -m venv venv
+
+# On macOS/Linux
+python3 -m venv venv
+```
+
+### 4. Activate Virtual Environment
+```bash
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
+```
+
+### 5. Install Required Dependencies
+```bash
+pip install -r requirements.txt
+```
+**Note:** This will install PyTorch, OpenCV, Flask, and other required packages. The installation may take 5-10 minutes.
+
+### 6. Download AI Model (First Time Setup)
+```bash
+python model.py
+```
+**Important:** This step downloads the Faster R-CNN model (~160MB). Ensure you have a stable internet connection. This only needs to be done once.
+
+### 7. Test Object Detection Module
+```bash
+python object_detection_1.py
+```
+**Note:** This will test the camera and AI detection. Press 'q' to quit the test.
+
+### 8. Start Backend Server
+```bash
+python app.py
+```
+**Expected Output:** 
+- Server running on http://localhost:5000
+- Model loaded successfully message
+- CORS enabled for frontend communication
+
+**Keep this terminal open - the backend server must run continuously**
+
+## ⚛️ Frontend Setup (React Application)
+
+### 9. Open New Terminal/Command Prompt
+Navigate to the project root directory in a new terminal:
+```bash
+cd path/to/bottle-classification-React-python
+```
+
+### 10. Navigate to Frontend Directory
+```bash
+cd frontend
+```
+
+### 11. Install Node.js Dependencies
+```bash
+npm install
+```
+**Note:** This installs React, Vite, Tailwind CSS, and other frontend dependencies. May take 2-3 minutes.
+
+### 12. Start Frontend Development Server
+```bash
+npm run dev
+```
+**Expected Output:**
+- Server running on http://localhost:5173 or http://localhost:5174
+- Ready in X ms message
+
+## 🔥 Firebase Configuration (Optional but Recommended)
+
+### 13. Setup Firebase (If not configured)
+1. Go to https://console.firebase.google.com/
+2. Create a new project
+3. Enable Authentication (Email/Password)
+4. Enable Firestore Database
+5. Copy your Firebase config
+6. Update `frontend/src/firebase-config.js` with your config
+
+## 🎯 Running the Complete System
+
+### 14. Final Steps
+1. **Backend Terminal:** Keep `python app.py` running on http://localhost:5000
+2. **Frontend Terminal:** Keep `npm run dev` running on http://localhost:5173
+3. **Browser:** Open http://localhost:5173 (or the port shown in terminal)
+
+### 15. Testing the System
+1. **Register/Login:** Create an account or login
+2. **Navigate:** Go to "Object Detection" page
+3. **Detection:** Click "Start Bottle Detection"
+4. **Camera:** Allow camera permissions
+5. **Test:** Point camera at bottles (plastic, glass, metal)
+6. **Results:** View detection results and rewards
+
+## 🛠️ Troubleshooting
+
+### Common Issues and Solutions
+
+#### Backend Issues:
+- **"Model not found"**: Run `python model.py` to download the model
+- **"Camera not working"**: Check camera permissions and ensure no other app is using it
+- **"Port 5000 already in use"**: Kill other processes on port 5000 or change port in app.py
+- **"Module not found"**: Ensure virtual environment is activated and requirements are installed
+
+#### Frontend Issues:
+- **"Port 5173 in use"**: The system will automatically use next available port
+- **"Firebase errors"**: Check Firebase configuration in firebase-config.js
+- **"Network errors"**: Ensure backend is running on http://localhost:5000
+- **"Camera permissions"**: Allow camera access in browser settings
+
+#### General Issues:
+- **Slow detection**: First-time model loading may take longer
+- **Low accuracy**: Ensure good lighting and clear view of bottles
+- **Browser compatibility**: Use Chrome/Firefox for best results
+
+## 📁 Project Structure
+```
+project-wusl-main/
+├── backend/
+│   ├── app.py              # Flask server
+│   ├── object_detection_1.py # AI detection module
+│   ├── model.py            # Model downloader
+│   ├── requirements.txt    # Python dependencies
+│   └── venv/              # Virtual environment
+├── frontend/
+│   ├── src/
+│   │   ├── pages/         # React pages
+│   │   ├── components/    # React components
+│   │   └── firebase-config.js
+│   ├── package.json       # Node.js dependencies
+│   └── dist/             # Built files
+└── instructions.txt       # This file
+```
+
+## 🚀 Production Deployment (Optional)
+
+### Backend Deployment:
+- Use services like Heroku, Railway, or DigitalOcean
+- Set environment variables for production
+- Use gunicorn for production server
+
+### Frontend Deployment:
+```bash
+npm run build
+```
+- Deploy the `dist` folder to Netlify, Vercel, or similar service
+
+## 🔧 Development Commands
+
+### Backend Development:
+```bash
+# Activate virtual environment
+venv\Scripts\activate  # Windows
+source venv/bin/activate  # macOS/Linux
+
+# Install new package
+pip install package_name
+pip freeze > requirements.txt
+
+# Run in development
+python app.py
+```
+
+### Frontend Development:
+```bash
+# Install new package
+npm install package_name
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## 📞 Support
+
+If you encounter any issues:
+1. Check the terminal outputs for error messages
+2. Ensure all dependencies are installed correctly
+3. Verify camera and network permissions
+4. Check if all required services are running
+
+## 🎉 Congratulations!
+
+If you've followed all steps correctly, you should now have:
+- ✅ Backend server running with AI model loaded
+- ✅ Frontend application accessible in browser
+- ✅ Working camera-based bottle detection
+- ✅ User authentication and reward system
+- ✅ Real-time detection and database storage
+
+Enjoy using the EcoReward Bottle Detection System! 🌱♻️
+
+---
+**Last Updated:** September 24, 2025
+**Version:** 1.0.0
+**Author:** EcoReward Development Team
