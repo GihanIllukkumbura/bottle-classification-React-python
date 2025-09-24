@@ -1,0 +1,9 @@
+flask
+flask_cors
+influxdb-client
+Pillow
+torch
+torchvision
+opencv-python
+numpy
+matplotlib
